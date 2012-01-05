@@ -10,6 +10,9 @@
         "type": "git"
       , "web": "http://github.com/jswartwood/and1.git"
     }
+  , "dependencies":{
+        "when": "https://github.com/briancavalier/when.js/tarball/0.10.4"
+    }
   , "bugs": {
         "web": "http://github.com/jswartwood/and1/issues"
     }
