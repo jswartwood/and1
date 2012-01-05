@@ -1,0 +1,19 @@
+{
+    "name" : "and1"
+  , "version": "0.0.1"
+  , "engines": { "node": ">= 0.4.0" }
+  , "description": "Makes your queues your asynchronous call in the order they were made."
+  , "author": "Jacob Swartwood"
+  , "keywords": [ "and1", "queue", "promise", "when", "async" ]
+  , "main" : "and1.js"
+  , "repository": {
+        "type": "git"
+      , "web": "http://github.com/jswartwood/and1.git"
+    }
+  , "bugs": {
+        "web": "http://github.com/jswartwood/and1/issues"
+    }
+  , "licenses" : [
+        { "type" : "MIT",  "url" : "http://jacob.swartwood.info/license/" }
+    ]
+}
