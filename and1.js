@@ -7,17 +7,20 @@ module.exports = {
 		var useAnd = typeof andOne === "function"
 			, andDefer = when.defer()
 			, kick = when.defer()
+			, pass = when.defer()
 			, allPromises = [ lastPromise, kick ]
 		;
 		
-		andDefer.then(function() {
-			setTimeout(kick.resolve, 0);
+		andDefer.then(function( val ) {
+			setTimeout(function() {
+				kick.resolve(val);
+			}, 0);
 		});
 		
 		if (useAnd && runNow) {
 			andOne(andDefer);
 		} else {
-			when(lastPromise).then(function() {
+			when(lastPromise, function() {
 				if (useAnd) {
 					andOne(andDefer);
 				} else {
@@ -26,8 +29,12 @@ module.exports = {
 			});
 		}
 		
-		lastPromise = when.all(allPromises);
+		function resolvePass( vals ) {
+			 pass.resolve(vals[1]);
+		}
+
+		lastPromise = when.all(allPromises, resolvePass);
 		
-		return andDefer;
+		return pass;
 	}
 };
