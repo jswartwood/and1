@@ -6,8 +6,13 @@ module.exports = {
 	queue: function( andOne, runNow ) {
 		var useAnd = typeof andOne === "function"
 			, andDefer = when.defer()
-			, allPromises = [ lastPromise, andDefer ]
+			, kick = when.defer()
+			, allPromises = [ lastPromise, kick ]
 		;
+		
+		andDefer.then(function() {
+			setTimeout(kick.resolve, 0);
+		});
 		
 		if (useAnd && runNow) {
 			andOne(andDefer);
