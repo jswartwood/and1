@@ -1,6 +1,6 @@
 {
 		"name" : "and1"
-	, "version": "0.0.1"
+	, "version": "0.0.2"
 	, "engines": { "node": ">= 0.4.0" }
 	, "description": "Makes your queues your asynchronous call in the order they were made."
 	, "author": "Jacob Swartwood"
