@@ -6,16 +6,9 @@ module.exports = {
 	queue: function( andOne, runNow ) {
 		var useAnd = typeof andOne === "function"
 			, andDefer = when.defer()
-			, kick = when.defer()
 			, pass = when.defer()
-			, allPromises = [ lastPromise, kick ]
+			, allPromises = [ lastPromise, andDefer ]
 		;
-		
-		andDefer.then(function( val ) {
-			setTimeout(function() {
-				kick.resolve(val);
-			}, 0);
-		});
 		
 		if (useAnd && runNow) {
 			andOne(andDefer);
@@ -28,13 +21,14 @@ module.exports = {
 				}
 			});
 		}
-		
-		function resolvePass( vals ) {
-			 pass.resolve(vals[1]);
-		}
 
-		lastPromise = when.all(allPromises, resolvePass);
-		
-		return pass;
+		when.all(allPromises, function( vals ) {
+			process.nextTick(function() {
+				pass.resolve(vals[1]);
+			});
+		});
+
+		return lastPromise = pass.promise;
 	}
 };
+
