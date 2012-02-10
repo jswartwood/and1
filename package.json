@@ -1,8 +1,8 @@
 {
 		"name" : "and1"
-	, "version": "0.0.2"
+	, "version": "0.1.0"
 	, "engines": { "node": ">= 0.4.0" }
-	, "description": "Makes your queues your asynchronous call in the order they were made."
+	, "description": "Queues your asynchronous calls in the order they were made."
 	, "author": "Jacob Swartwood"
 	, "keywords": [ "and1", "queue", "promise", "when", "async" ]
 	, "main" : "and1.js"
